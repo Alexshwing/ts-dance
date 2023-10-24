@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '../test-utils'
 
 type cases = [
   Expect<Equal<Push<[], 1>, [1]>>,
