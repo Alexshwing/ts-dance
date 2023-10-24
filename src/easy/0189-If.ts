@@ -1,0 +1,10 @@
+// ============= Test Cases =============
+import type { Equal, Expect } from '@type-challenges/utils'
+
+type cases = [
+  Expect<Equal<If<true, 'a', 'b'>, 'a'>>,
+  Expect<Equal<If<false, 'a', 2>, 2>>,
+]
+
+// ============= Your Code Here =============
+type If<C, T, F> = C extends true ? T : F
