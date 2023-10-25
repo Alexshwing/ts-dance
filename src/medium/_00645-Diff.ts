@@ -23,4 +23,10 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Diff<O, O1> = {}
+type Diff<O extends Record<string, any>, O1 extends Record<string, any>> = Omit<
+  O,
+  keyof O1
+> &
+  Omit<O1, keyof O>
+
+type T = Diff<Foo, Bar>
