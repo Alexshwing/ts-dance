@@ -53,15 +53,15 @@ type cases = [
       { name: string }
     >
   >,
-  // Expect<
-  //   Equal<
-  //     MapTypes<
-  //       { name: string; date: Date },
-  //       { mapFrom: string; mapTo: boolean } | { mapFrom: Date; mapTo: string }
-  //     >,
-  //     { name: boolean; date: string }
-  //   >
-  // >,
+  Expect<
+    Equal<
+      MapTypes<
+        { name: string; date: Date },
+        { mapFrom: string; mapTo: boolean } | { mapFrom: Date; mapTo: string }
+      >,
+      { name: boolean; date: string }
+    >
+  >,
 ]
 
 // ============= Your Code Here =============
@@ -69,10 +69,9 @@ type MapTypes<
   T extends Record<string, any>,
   R extends { mapFrom: any; mapTo: any },
 > = {
-  [Key in keyof T]: T[Key] extends R['mapFrom'] ? R['mapTo'] : T[Key]
+  [Key in keyof T]: T[Key] extends R['mapFrom']
+    ? R extends { mapFrom: T[Key] }
+      ? R['mapTo']
+      : never
+    : T[Key]
 }
-
-type P = MapTypes<
-  { name: string; date: Date },
-  { mapFrom: string; mapTo: boolean } | { mapFrom: Date; mapTo: string }
->
