@@ -30,4 +30,12 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type PercentageParser<A extends string> = any
+type PercentageParser<A extends string> = A extends `${infer L}${infer R}`
+  ? L extends '+' | '-'
+    ? R extends `${infer Rest}%`
+      ? [L, Rest, '%']
+      : [L, R, '']
+    : A extends `${infer Rest}%`
+    ? ['', Rest, '%']
+    : ['', A, '']
+  : ['', '', '']
