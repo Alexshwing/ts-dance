@@ -14,16 +14,14 @@ type cases = [
   >,
 ]
 
-// type errors = [
-//   // @ts-expect-error
-//   FlipArguments<'string'>,
-//   // @ts-expect-error
-//   FlipArguments<{ key: 'value' }>,
-//   // @ts-expect-error
-//   FlipArguments<['apple', 'banana', 100, { a: 1 }]>,
-//   // @ts-expect-error
-//   FlipArguments<null | undefined>,
-// ]
+type errors = [
+  // @ts-expect-error
+  FlipArguments<'string'>,
+  // @ts-expect-error
+  FlipArguments<{ key: 'value' }>,
+  // @ts-expect-error
+  FlipArguments<['apple', 'banana', 100, { a: 1 }]>,
+]
 
 // ============= Your Code Here =============
 type Reverse<T extends unknown[] = []> = T extends [infer First, ...infer Rest]
