@@ -25,4 +25,8 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Combination<T extends string[]> = any
+type Combination<T extends unknown[]> = T extends [infer First, ...infer Rest]
+  ? `${Combination<Rest>}` | `${First & string} ${Combination<Rest>}`
+  : ''
+
+type T = Combination<['foo', 'bar', 'baz']>
