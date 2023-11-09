@@ -18,4 +18,4 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type CamelCase<S extends string> = any
+type CamelCase<S extends string> = S
