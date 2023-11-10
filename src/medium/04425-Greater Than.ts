@@ -21,6 +21,6 @@ type InnerGeaterThan<T extends number, U extends number> = T extends U
   ? false
   : InnerGeaterThan<MinusOne<T>, U>
 
-type GreaterThan<T extends number, U extends number> = T extends U
+export type GreaterThan<T extends number, U extends number> = T extends U
   ? false
   : InnerGeaterThan<MinusOne<T>, U>

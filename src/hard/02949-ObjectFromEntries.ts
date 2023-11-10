@@ -12,7 +12,9 @@ type ModelEntries =
   | ['age', number]
   | ['locations', string[] | null]
 
-// type cases = [Expect<Equal<ObjectFromEntries<ModelEntries>, Model>>]
+type cases = [Expect<Equal<ObjectFromEntries<ModelEntries>, Model>>]
 
 // ============= Your Code Here =============
-type ObjectFromEntries<T> = any
+type ObjectFromEntries<T extends any[]> = {
+  [Key in T as Key extends any[] ? Key[0] : never]: Key[1]
+}

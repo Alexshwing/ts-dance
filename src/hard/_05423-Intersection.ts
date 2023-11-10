@@ -11,4 +11,9 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Intersection<T> = any
+type Intersection<T extends unknown[], Res extends number[]> = T extends [
+  infer First,
+  ...infer Rest,
+]
+  ? T
+  : T
