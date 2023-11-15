@@ -86,16 +86,33 @@ type Case4Answer = {
 }
 
 type cases = [
-  // Expect<
-  //   Equal<
-  //     Assign<Case1Target, [Case1Origin1, Case1Origin2, Case1Origin3]>,
-  //     Case1Answer
-  //   >
-  // >,
-  // Expect<Equal<Assign<Case2Target, [Case2Origin1, Case2Origin2]>, Case2Answer>>,
-  // Expect<Equal<Assign<Case3Target, [Case3Origin1, Case3Origin2]>, Case3Answer>>,
-  // Expect<Equal<Assign<Case4Target, ['', 0]>, Case4Answer>>,
+  Expect<
+    Equal<
+      Assign<Case1Target, [Case1Origin1, Case1Origin2, Case1Origin3]>,
+      Case1Answer
+    >
+  >,
+  Expect<Equal<Assign<Case2Target, [Case2Origin1, Case2Origin2]>, Case2Answer>>,
+  Expect<Equal<Assign<Case3Target, [Case3Origin1, Case3Origin2]>, Case3Answer>>,
+  Expect<Equal<Assign<Case4Target, ['', 0]>, Case4Answer>>,
 ]
 
 // ============= Your Code Here =============
-type Assign<T extends Record<string, unknown>, U> = any
+
+type Merge<
+  T extends Record<string, unknown>,
+  U extends Record<string, unknown>,
+> = {
+  [P in keyof T | keyof U]: P extends keyof U
+    ? U[P]
+    : P extends keyof T
+    ? T[P]
+    : never
+}
+
+type Assign<
+  T extends Record<string, unknown>,
+  U extends unknown[],
+> = U extends [infer First extends Record<string, unknown>, ...infer Rest]
+  ? Assign<Merge<T, First>, Rest>
+  : T
