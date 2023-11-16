@@ -56,4 +56,12 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type ObjectKeyPaths<T extends object> = any
+type ObjectKeyPaths<T extends Record<string, any>> = T[keyof T]
+
+// keyof T &
+//   ObjectKeyPaths<T[keyof T]>
+
+type T = ObjectKeyPaths<{
+  refCount: number
+  person: { name: string; age: number }
+}>

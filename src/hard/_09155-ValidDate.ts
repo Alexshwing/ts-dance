@@ -15,6 +15,10 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Num = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0
+type Number = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
-type ValidDate<T extends string> = T extends `01${Num}${Num}` ? true : false
+type ValidDate<T extends string> = T extends
+  | `0${Number}${infer A}${infer B}`
+  | `1${0 | 1 | 2}${infer A}${infer B}`
+  ? true
+  : false
