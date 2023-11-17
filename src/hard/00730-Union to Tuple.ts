@@ -34,4 +34,22 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type UnionToTuple<T> = any
+// 联合转交叉函数
+type UnionToIntersectionFn<T> = (
+  T extends T ? (arg: () => T) => void : never
+) extends (arg: infer R) => void
+  ? R
+  : never
+
+type T = UnionToIntersectionFn<'foo' | 42 | true> // (() => true) & (() => "foo") & (() => 42)
+
+// 获取最后一个交叉类型
+type GetLastUnion<T> = UnionToIntersectionFn<T> extends () => infer R
+  ? R
+  : never
+
+type P = GetLastUnion<'foo' | 42 | true>
+
+type UnionToTuple<T, Last = GetLastUnion<T>> = [T] extends [never]
+  ? []
+  : [...UnionToTuple<Exclude<T, Last>>, Last]
