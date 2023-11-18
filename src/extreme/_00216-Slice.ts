@@ -23,41 +23,21 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
+import { _Add, _Sub, _BuildArr } from 'utils/operation'
 
-type ArrLength<T extends unknown[]> = T['length']
+type ArrLength<T extends number[], Res extends unknown[] = []> = T extends [
+  infer _,
+  ...infer Rest extends number[],
+]
+  ? ArrLength<Rest, [...Res, unknown]>
+  : Res['length']
 
-type BuildArr<
-  T extends number,
-  Res extends unknown[] = [],
-> = Res['length'] extends T ? Res : BuildArr<T, [...Res, unknown]>
-
-type Add<A extends number, B extends number> = ArrLength<
-  [...BuildArr<A>, ...BuildArr<B>]
->
-
-type T1 = Add<1, 2>
-type T2 = Add<12, 2>
-
-type TSlice<
-  Arr extends number[],
-  Start extends number = 0,
-  End extends number = 0,
-  Count extends unknown[] = [],
-  flag extends boolean = false,
-  Res extends unknown[] = [],
-> = Arr extends [infer First, ...infer Rest extends number[]]
-  ? Count['length'] extends End
-    ? Res
-    : Count['length'] extends Start
-    ? TSlice<Rest, Start, End, [...Count, unknown], true, [...Res, First]>
-    : flag extends true
-    ? TSlice<Rest, Start, End, [...Count, unknown], true, [...Res, First]>
-    : TSlice<Rest, Start, End, [...Count, unknown], false, Res>
-  : Res
+type Pop<T extends number[]> = T extends [...infer Rest, infer _] ? Rest : T
+type Shift<T extends number[]> = T extends [infer _, infer Rest] ? Rest : T
 
 type Slice<
   Arr extends number[],
-  Start extends number = 0,
-  End extends number = 0,
+  Start extends number,
+  End extends number,
   Len extends number = ArrLength<Arr>,
-> = TSlice<Arr, Start, End>
+> = Arr

@@ -1,8 +1,15 @@
 // ! T 最大值 999
-export type _BuildArr<
-  T extends number,
-  Res extends number[] = [],
-> = Res['length'] extends T ? Res : _BuildArr<T, [...Res, 0]>
+// export type _BuildArr<
+//   T extends number,
+//   Res extends number[] = [],
+// > = Res['length'] extends T ? Res : _BuildArr<T, [...Res, 0]>
+
+// @see https://github.com/type-challenges/type-challenges/issues/11216
+export type _BuildArr<T extends number, Res extends number[] = []> = 0 extends 1
+  ? never
+  : Res['length'] extends T
+  ? Res
+  : _BuildArr<T, [...Res, 0]>
 
 export type _Add<A extends number, B extends number> = [
   ..._BuildArr<A>,
