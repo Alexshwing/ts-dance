@@ -25,3 +25,12 @@ export type _StringToNumber<S extends string> = S extends `${infer N extends
   number}`
   ? N
   : never
+
+// 12 -> `12`
+export type _NumberToString<T extends number> = `${T}`
+
+// `12` -> [`1`, `2`]
+export type _StringToArr<T extends string> = T extends `${infer First extends
+  string}${infer Rest extends string}`
+  ? [First, ..._StringToArr<Rest>]
+  : []
