@@ -51,7 +51,7 @@ type cases = [
 // ============= Your Code Here =============
 import { _NumberToString, _StringToArr } from 'utils/transformation'
 
-enum Comparison {
+export enum Comparison {
   Greater,
   Equal,
   Lower,
@@ -141,3 +141,5 @@ type Comparator<A extends number, B extends number> = CompareSign<
       : never
     : R1
   : never
+
+export type _Compare<A extends number, B extends number> = Comparator<A, B>

@@ -348,4 +348,5 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type InclusiveRange<Lower extends number, Higher extends number> = any
+
+type InclusiveRange<Lower extends number, Higher extends number> = Lower
