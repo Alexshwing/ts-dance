@@ -13,7 +13,7 @@ type cases = [
 
 // ============= Your Code Here =============
 type MyParameters<T extends (...args: any[]) => any> = T extends (
-  ...args: infer U
+  ...args: infer R
 ) => any
-  ? U
+  ? R
   : never

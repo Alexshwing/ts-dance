@@ -18,11 +18,8 @@ type cases = [
   Expect<Equal<AnyOf<[]>, false>>,
 ]
 
+// 在类型系统中实现类似于 Python 中 any 函数。类型接收一个数组，如果数组中任一个元素为真，则返回 true，否则返回 false。如果数组为空，返回 false
 // ============= Your Code Here =============
 
-type Falsy = 0 | '' | false | [] | Record<PropertyKey, never> | undefined | null
+type Falsy = 0 | '' | false | [] | { [key: string]: never } | undefined | null
 type AnyOf<T extends readonly any[]> = T extends Falsy[] ? false : true
-
-// ============= note =============
-// 使用 `Record<PropertyKey, never>` 表示 空对象
-// {} 表示 所有对象类型

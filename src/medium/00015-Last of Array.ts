@@ -8,6 +8,4 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Last<T extends any[]> = T extends [...infer Rest, infer Last]
-  ? Last
-  : never
+type Last<T extends any[]> = T extends [...infer _, infer Last] ? Last : never

@@ -50,6 +50,12 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type AppendToObject<T, U extends keyof any, V> = {
-  [Key in keyof T | U]: Key extends keyof T ? T[Key] : V
-}
+// type AppendToObject<T, U extends keyof any, V> = {
+//   [P in keyof T | U]: P extends keyof T ? T[P] : V
+// }
+
+type AppendToObject<
+  T extends Record<string, any>,
+  U extends keyof any,
+  V extends any,
+> = Omit<T & Record<U, V>, never>

@@ -38,25 +38,38 @@ type Expected2 = {
 type Expected3 = {
   name: number
 }
-
-// ============= Your Code Here =============
-// type Chainable = {
-//   option(key: string, value: any): any
-//   get(): any
-// }
-
-type Chainable<T = {}> = {
-  option<K extends string, V>(
-    key: K extends keyof T ? (V extends T[K] ? never : K) : K,
-    value: V
-  ): Chainable<Omit<T, K> & Record<K, V>>
-  get(): T
-}
-
 /*
-1. T = {} 用于 全局记录
-2. option 是一个函数接收两个值：K 和 V，
-为了约束 key 不可重复必须范型传入，value 是任意类型范型不做约束直接透传
-3. 只有相同 key 且 value 类型相同才返回 never (案例3) 
-4. Omit 去掉前一个类型中相同的 key
+在这个挑战中，你可以使用任意你喜欢的方式实现这个类型 - Interface, Type 或 Class 都行。你需要提供两个函数 option(key, value) 和 get()。在 option 中你需要使用提供的 key 和 value 扩展当前的对象类型，通过 get 获取最终结果。
+
+例如
+
+declare const config: Chainable
+
+const result = config
+  .option('foo', 123)
+  .option('name', 'type-challenges')
+  .option('bar', { value: 'Hello World' })
+  .get()
+
+// 期望 result 的类型是：
+interface Result {
+  foo: number
+  name: string
+  bar: {
+    value: string
+  }
+}
+你只需要在类型层面实现这个功能 - 不需要实现任何 TS/JS 的实际逻辑。
+
+你可以假设 key 只接受字符串而 value 接受任何类型，你只需要暴露它传递的类型而不需要进行任何处理。同样的 key 只会被使用一次。
+
+
 */
+// ============= Your Code Here =============
+type Chainable<Res extends Record<string, any> = {}> = {
+  option<K extends string, V>(
+    key: K extends keyof Res ? (V extends Res[K] ? never : K) : K,
+    value: V
+  ): Chainable<Omit<Res, K> & Record<K, V>>
+  get(): Res
+}

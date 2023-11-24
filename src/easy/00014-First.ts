@@ -9,6 +9,6 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type First<T extends unknown[]> = T extends [infer First, ...infer Rest]
+type First<T extends unknown[]> = T extends [infer First, ...infer _]
   ? First
   : never

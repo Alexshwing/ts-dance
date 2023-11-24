@@ -30,16 +30,18 @@ type cases = [
   Expect<Equal<RemoveIndexSignature<Baz>, { bar(): void; baz: string }>>,
 ]
 
+// 移除签名索引
 // ============= Your Code Here =============
 type RemoveIndexSignature<T> = {
-  [Key in keyof T as number extends Key
+  [P in keyof T as string extends P
     ? never
-    : string extends Key
+    : number extends P
     ? never
-    : symbol extends Key
+    : symbol extends P
     ? never
-    : Key]: T[Key]
+    : P]: T[P]
 }
 
 // ============= note =============
+// 索引类型的索引为字符串字面量类型, 可索引签名不是, 可以用这个特性过滤掉可索引签名
 // 要区分索引签名和确定的key 要用'类型 extends k'确定

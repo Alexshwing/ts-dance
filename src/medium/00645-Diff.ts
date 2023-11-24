@@ -25,5 +25,5 @@ type cases = [
 // ============= Your Code Here =============
 
 type Diff<A extends Record<string, any>, B extends Record<string, any>> = {
-  [Key in Exclude<keyof A, keyof B> | Exclude<keyof B, keyof A>]: (A & B)[Key]
+  [P in Exclude<keyof A, keyof B> | Exclude<keyof B, keyof A>]: (A & B)[P]
 }

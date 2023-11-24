@@ -59,10 +59,10 @@ type Expected2 = { readonly a: string } | { readonly b: number }
 // ============= Your Code Here =============
 type DeepReadonly<T extends Record<string, any>> = T extends any
   ? {
-      readonly [Key in keyof T]: T[Key] extends Record<string, any>
-        ? T[Key] extends Function
-          ? T[Key]
-          : DeepReadonly<T[Key]>
-        : T[Key]
+      readonly [P in keyof T]: T[P] extends Record<string, any>
+        ? T[P] extends Function
+          ? T[P]
+          : DeepReadonly<T[P]>
+        : T[P]
     }
   : never

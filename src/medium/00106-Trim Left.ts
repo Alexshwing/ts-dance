@@ -12,7 +12,7 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type BlackStr = ' ' | '\n' | '\t'
-type TrimLeft<S extends string> = S extends `${BlackStr}${infer Rest}`
+type Space = ' ' | '\n' | '\t'
+type TrimLeft<S extends string> = S extends `${Space}${infer Rest}`
   ? TrimLeft<Rest>
   : S

@@ -8,6 +8,4 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Unshift<T extends unknown[], U extends unknown> = T extends unknown[]
-  ? [U, ...T]
-  : never
+type Unshift<T extends unknown[], U extends unknown> = [U, ...T]

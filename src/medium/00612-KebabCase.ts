@@ -13,6 +13,8 @@ type cases = [
   Expect<Equal<KebabCase<'😎'>, '😎'>>,
 ]
 
+// Replace the camelCase or PascalCase string with kebab-case.
+// FooBarBaz -> foo-bar-baz
 // ============= Your Code Here =============
 type KebabCase<S extends string> = S extends `${infer First}${infer Rest}`
   ? Rest extends Uncapitalize<Rest>

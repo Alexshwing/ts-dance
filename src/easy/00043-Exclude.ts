@@ -10,4 +10,4 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type MyExclude<T, U> = T extends U ? never : T
+type MyExclude<T, P> = T extends P ? never : T

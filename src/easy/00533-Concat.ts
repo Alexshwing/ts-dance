@@ -11,11 +11,11 @@ type cases = [
       ['1', 2, '3', false, boolean, '4']
     >
   >,
+  Expect<Equal<Concat<readonly [], []>, []>>,
 ]
 
 // ============= Your Code Here =============
-type Concat<T, U> = T extends unknown[]
-  ? U extends unknown[]
-    ? [...T, ...U]
-    : []
-  : []
+type Concat<T extends readonly unknown[], U extends readonly unknown[]> = [
+  ...T,
+  ...U,
+]

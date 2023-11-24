@@ -70,10 +70,6 @@ type ReplaceKeys<
   Y extends Record<string, any>,
 > = U extends U
   ? {
-      [Key in keyof U]: Key extends T
-        ? Key extends keyof Y
-          ? Y[Key]
-          : never
-        : U[Key]
+      [P in keyof U]: P extends T ? (P extends keyof Y ? Y[P] : never) : U[P]
     }
   : never

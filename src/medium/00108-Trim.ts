@@ -13,12 +13,9 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type BlackStr = ' ' | '\n' | '\t'
-type TrimLeft<S extends string> = S extends `${BlackStr}${infer Rest}`
-  ? TrimLeft<Rest>
+type Space = ' ' | '\n' | '\t'
+type Trim<S extends string> = S extends
+  | `${Space}${infer Rest}`
+  | `${infer Rest}${Space}`
+  ? Trim<Rest>
   : S
-type TrimRight<S extends string> = S extends `${infer Rest}${BlackStr}`
-  ? TrimRight<Rest>
-  : S
-
-type Trim<S extends string> = TrimLeft<TrimRight<S>>

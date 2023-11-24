@@ -24,6 +24,6 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type TupleToObject<T extends readonly (string | symbol | number)[]> = {
-  [Key in T[number]]: Key
+type TupleToObject<T extends readonly PropertyKey[]> = {
+  [P in T[number]]: P
 }

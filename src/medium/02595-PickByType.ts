@@ -21,5 +21,5 @@ type cases = [
 
 // ============= Your Code Here =============
 type PickByType<T, U> = {
-  [Key in keyof T as T[Key] extends U ? Key : never]: T[Key]
+  [P in keyof T as T[P] extends U ? P : never]: T[P]
 }

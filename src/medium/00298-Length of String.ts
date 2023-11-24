@@ -12,6 +12,6 @@ type cases = [
 type LengthOfString<
   S extends string,
   Res extends unknown[] = [],
-> = S extends `${infer First}${infer Rest}`
+> = S extends `${infer _}${infer Rest}`
   ? LengthOfString<Rest, [...Res, unknown]>
   : Res['length']

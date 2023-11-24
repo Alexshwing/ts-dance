@@ -7,7 +7,4 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-// 1
-// type TupleToUnion<T extends any[]> = T[number]
-// 2
-type TupleToUnion<T> = T extends Array<infer R> ? R : never
+type TupleToUnion<T extends any[]> = T[number]
