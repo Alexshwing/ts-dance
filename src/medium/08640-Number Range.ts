@@ -151,22 +151,10 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type BuildArr<
-  T extends number,
-  Res extends unknown[] = [],
-> = Res['length'] extends T ? Res : BuildArr<T, [...Res, unknown]>
-
-type AddOne<T extends number> = T extends T
-  ? [...BuildArr<T>, unknown]['length']
-  : never
+import { _Add } from 'utils/operation'
 
 type NumberRange<
   L extends number,
-  H extends number,
-  C extends number = L,
-  Res extends unknown[] = [],
-> = C extends H
-  ? [...Res, C][number]
-  : NumberRange<L, H, AddOne<C>, [...Res, C]>
-
-type T = NumberRange<2, 9>
+  R extends number,
+  Res extends number[] = [],
+> = L extends R ? [...Res, R][number] : NumberRange<_Add<L, 1>, R, [...Res, L]>

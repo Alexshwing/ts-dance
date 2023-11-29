@@ -28,7 +28,7 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type RequiredByKeys<T, K extends keyof T = keyof T> = Omit<
-  Required<Pick<T, K & keyof T>> & Omit<T, K & keyof T>,
-  never
->
+type RequiredByKeys<
+  T extends Record<string, any>,
+  P extends keyof T = keyof T,
+> = Omit<Required<Pick<T, P & keyof T>> & Omit<T, P & keyof T>, never>

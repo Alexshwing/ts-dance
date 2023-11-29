@@ -11,19 +11,14 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-
-type BuildArr<
-  N extends number,
+type Chunk<
+  T extends unknown[],
+  U extends number = 1,
   Res extends unknown[] = [],
-> = Res['length'] extends N ? Res : BuildArr<N, [...Res, unknown]>
-
-type Chunk<T extends unknown[], U extends number> = T extends [
-  ...BuildArr<U>,
-  ...infer Rest,
-]
-  ? T extends [...infer R, ...Rest]
-    ? [R, ...Chunk<Rest, U>]
-    : []
-  : T extends []
-  ? []
-  : [T]
+> = T extends [infer First, ...infer Rest]
+  ? Res['length'] extends U
+    ? [Res, ...Chunk<T, U>]
+    : Chunk<Rest, U, [...Res, First]>
+  : Res['length'] extends 0
+  ? Res
+  : [Res]

@@ -25,6 +25,6 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type OmitByType<T, U> = {
-  [Key in keyof T as T[Key] extends U ? never : Key]: T[Key]
+type OmitByType<T extends Record<string, any>, U> = {
+  [P in keyof T as T[P] extends U ? never : P]: T[P]
 }

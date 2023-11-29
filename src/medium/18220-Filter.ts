@@ -10,11 +10,8 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Filter<T extends any[], P, Res extends unknown[] = []> = T extends [
-  infer First,
-  ...infer Rest,
-]
+type Filter<T extends unknown[], P> = T extends [infer First, ...infer Rest]
   ? First extends P
-    ? Filter<Rest, P, [...Res, First]>
-    : Filter<Rest, P, Res>
-  : Res
+    ? [First, ...Filter<Rest, P>]
+    : Filter<Rest, P>
+  : []

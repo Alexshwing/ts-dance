@@ -1,5 +1,4 @@
 // ============= Test Cases =============
-import { type } from 'os'
 import type { Equal, Expect } from '../test-utils'
 
 type cases = [
@@ -12,7 +11,7 @@ type cases = [
 
 // ============= Your Code Here =============
 
-type LastIndexOf<T, U> = T extends [...infer Rest, infer Last]
+type LastIndexOf<T extends unknown[], U> = T extends [...infer Rest, infer Last]
   ? Equal<Last, U> extends true
     ? Rest['length']
     : LastIndexOf<Rest, U>

@@ -23,13 +23,11 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type ReplaceFirst<
-  T extends readonly unknown[],
-  S,
-  R,
-  Res extends unknown[] = [],
-> = T extends [infer First, ...infer Rest]
-  ? First extends S
-    ? [...Res, R, ...Rest]
-    : ReplaceFirst<Rest, S, R, [...Res, First]>
-  : Res
+type ReplaceFirst<T extends readonly unknown[], K, V> = T extends [
+  infer First,
+  ...infer Rest,
+]
+  ? First extends K
+    ? [V, ...Rest]
+    : [First, ...ReplaceFirst<Rest, K, V>]
+  : []

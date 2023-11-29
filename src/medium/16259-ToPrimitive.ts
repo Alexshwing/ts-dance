@@ -32,7 +32,7 @@ type cases = [Expect<Equal<ToPrimitive<PersonInfo>, ExpectedResult>>]
 // ============= Your Code Here =============
 type ToPrimitive<T extends Record<string, any>> = T extends Record<string, any>
   ? {
-      [Key in keyof T]: T[Key] extends Function ? Function : ToPrimitive<T[Key]>
+      [P in keyof T]: T[P] extends Function ? Function : ToPrimitive<T[P]>
     }
   : T extends { valueOf: () => infer P }
   ? P

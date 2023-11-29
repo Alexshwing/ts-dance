@@ -12,7 +12,7 @@ type cases = [
 
 // ============= Your Code Here =============
 type Flip<T extends Record<string, any>> = {
-  [Key in keyof T as `${T[Key]}`]: Key
+  [P in keyof T as `${T[P]}`]: P
 }
 
 // type T = Flip<{ pi: 3.14; bool: true }> // { true: 'xx' } 会被忽略

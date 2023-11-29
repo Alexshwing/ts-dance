@@ -9,19 +9,11 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Join<T extends unknown[], U extends number | string> = T extends [
-  infer First,
-  ...infer Rest,
+type Join<T extends string[], U extends number | string> = T extends [
+  infer First extends string,
+  ...infer Rest extends string[],
 ]
   ? Rest['length'] extends 0
-    ? `${First & string}`
-    : `${First & string}${U}${Join<Rest, U>}`
+    ? `${First}`
+    : `${First}${U}${Join<Rest, U>}`
   : never
-
-// ============= note =============
-// 使用 `${First & string}`: 约束 First 为字符串
-
-type Test = number | bigint | string | symbol
-
-// string
-type Test2 = Test & string

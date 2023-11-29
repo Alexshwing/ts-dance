@@ -21,10 +21,8 @@ type cases = [
 
 // ============= Your Code Here =============
 type ObjectEntries<T extends Record<string, any>> = {
-  [Key in keyof T]: [Key, T[Key]]
+  [P in keyof T]: [P, T[P]]
 }[keyof T]
-
-type P = ObjectEntries<Model>
 
 // ============= note =============
 // 对象转联合类型

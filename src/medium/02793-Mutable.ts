@@ -24,7 +24,7 @@ type errors = [
   Mutable<0>,
 ]
 
-// // ============= Your Code Here =============
+// ============= Your Code Here =============
 type Mutable<T extends Record<string, any>> = {
-  -readonly [Key in keyof T]: T[Key]
+  -readonly [P in keyof T]: T[P]
 }

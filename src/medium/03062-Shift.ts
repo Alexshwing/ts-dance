@@ -11,6 +11,4 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type Shift<T extends unknown[]> = T extends [infer First, ...infer Rest]
-  ? Rest
-  : T
+type Shift<T extends unknown[]> = T extends [infer _, ...infer Rest] ? Rest : T

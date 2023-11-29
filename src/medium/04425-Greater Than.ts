@@ -1,6 +1,5 @@
 // ============= Test Cases =============
 import type { Equal, Expect } from '../test-utils'
-import { MinusOne } from './02257-MinusOne'
 
 type cases = [
   Expect<Equal<GreaterThan<1, 0>, true>>,
@@ -15,12 +14,10 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type InnerGeaterThan<T extends number, U extends number> = T extends U
+import { _Compare, Comparison } from '../extreme/00274-Integers Comparator'
+type GreaterThan<A extends number, B extends number> = _Compare<
+  A,
+  B
+> extends Comparison.Greater
   ? true
-  : T extends 0
-  ? false
-  : InnerGeaterThan<MinusOne<T>, U>
-
-export type GreaterThan<T extends number, U extends number> = T extends U
-  ? false
-  : InnerGeaterThan<MinusOne<T>, U>
+  : false
