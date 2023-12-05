@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<FizzBuzz<1>, ['1']>>,
@@ -138,18 +138,24 @@ type cases = [
       ]
     >
   >,
-]
+];
 // Print "Fizz" if an integer is divisible by 3;
 // Print "Buzz" if an integer is divisible by 5;
 // Print "FizzBuzz" if an integer is divisible by both 3 and 5.
 // ============= Your Code Here =============
-type IsDivisibleByThree<Arr extends unknown[]> = Arr['length'] extends 2
-  ? true
-  : false
+import { _Mod } from 'utils/operation';
 
-type IsDivisibleByFive<Arr extends unknown[]> = Arr['length'] extends 4
+type IsDivisibleByThree<Arr extends unknown[]> = Arr['length'] extends 0
+  ? false
+  : _Mod<Arr['length'], 2> extends 0
   ? true
-  : false
+  : false;
+
+type IsDivisibleByFive<Arr extends unknown[]> = Arr['length'] extends 0
+  ? false
+  : Arr['length'] extends 4
+  ? true
+  : false;
 
 type FizzBuzz<
   N extends number,
@@ -169,6 +175,6 @@ type FizzBuzz<
       [...Res, `${[...Res, unknown]['length']}`],
       [...Three, unknown],
       [...Five, unknown]
-    >
+    >;
 
-type T = FizzBuzz<5>
+type T = FizzBuzz<5>;

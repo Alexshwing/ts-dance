@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, IsTrue } from '../test-utils'
+import type { Equal, IsTrue } from '../test-utils';
 
 type cases = [
   IsTrue<Equal<LengthOfString<''>, 0>>,
@@ -38,12 +38,12 @@ type cases = [
       999
     >
   >,
-]
+];
 
 // ============= Your Code Here =============
 type LengthOfString<
   S extends string,
   Res extends unknown[] = [],
-> = S extends `${infer First}${infer Rest}`
+> = S extends `${infer _}${infer Rest}`
   ? LengthOfString<Rest, [...Res, unknown]>
-  : Res['length']
+  : Res['length'];

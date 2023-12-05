@@ -1,89 +1,89 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 // case1
-type Case1Target = {}
+type Case1Target = {};
 
 type Case1Origin1 = {
-  a: 'a'
-}
+  a: 'a';
+};
 
 type Case1Origin2 = {
-  b: 'b'
-}
+  b: 'b';
+};
 
 type Case1Origin3 = {
-  c: 'c'
-}
+  c: 'c';
+};
 
 type Case1Answer = {
-  a: 'a'
-  b: 'b'
-  c: 'c'
-}
+  a: 'a';
+  b: 'b';
+  c: 'c';
+};
 
 // case2
 type Case2Target = {
-  a: [1, 2, 3]
-}
+  a: [1, 2, 3];
+};
 
 type Case2Origin1 = {
   a: {
-    a1: 'a1'
-  }
-}
+    a1: 'a1';
+  };
+};
 
 type Case2Origin2 = {
-  b: [2, 3, 3]
-}
+  b: [2, 3, 3];
+};
 
 type Case2Answer = {
   a: {
-    a1: 'a1'
-  }
-  b: [2, 3, 3]
-}
+    a1: 'a1';
+  };
+  b: [2, 3, 3];
+};
 
 // case3
 
 type Case3Target = {
-  a: 1
-  b: ['b']
-}
+  a: 1;
+  b: ['b'];
+};
 
 type Case3Origin1 = {
-  a: 2
+  a: 2;
   b: {
-    b: 'b'
-  }
-  c: 'c1'
-}
+    b: 'b';
+  };
+  c: 'c1';
+};
 
 type Case3Origin2 = {
-  a: 3
-  c: 'c2'
-  d: true
-}
+  a: 3;
+  c: 'c2';
+  d: true;
+};
 
 type Case3Answer = {
-  a: 3
+  a: 3;
   b: {
-    b: 'b'
-  }
-  c: 'c2'
-  d: true
-}
+    b: 'b';
+  };
+  c: 'c2';
+  d: true;
+};
 
 // case 4
 type Case4Target = {
-  a: 1
-  b: ['b']
-}
+  a: 1;
+  b: ['b'];
+};
 
 type Case4Answer = {
-  a: 1
-  b: ['b']
-}
+  a: 1;
+  b: ['b'];
+};
 
 type cases = [
   Expect<
@@ -95,7 +95,7 @@ type cases = [
   Expect<Equal<Assign<Case2Target, [Case2Origin1, Case2Origin2]>, Case2Answer>>,
   Expect<Equal<Assign<Case3Target, [Case3Origin1, Case3Origin2]>, Case3Answer>>,
   Expect<Equal<Assign<Case4Target, ['', 0]>, Case4Answer>>,
-]
+];
 
 // ============= Your Code Here =============
 
@@ -107,12 +107,15 @@ type Merge<
     ? U[P]
     : P extends keyof T
     ? T[P]
-    : never
-}
+    : never;
+};
 
 type Assign<
   T extends Record<string, unknown>,
   U extends unknown[],
-> = U extends [infer First extends Record<string, unknown>, ...infer Rest]
+> = U extends [
+  infer First extends Record<string, unknown>,
+  ...infer Rest extends unknown[],
+]
   ? Assign<Merge<T, First>, Rest>
-  : T
+  : T;

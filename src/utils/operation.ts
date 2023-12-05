@@ -9,19 +9,19 @@ export type _BuildArr<T extends number, Res extends number[] = []> = 0 extends 1
   ? never
   : Res['length'] extends T
   ? Res
-  : _BuildArr<T, [...Res, 0]>
+  : _BuildArr<T, [...Res, 0]>;
 
 export type _Add<A extends number, B extends number> = [
   ..._BuildArr<A>,
   ..._BuildArr<B>,
 ]['length'] &
-  number
+  number;
 
 export type _Sub<A extends number, B extends number> = [
   ..._BuildArr<A>,
 ] extends [..._BuildArr<B>, ...infer R]
   ? R['length'] & number
-  : never
+  : never;
 
 export type _Mul<
   A extends number,
@@ -29,7 +29,7 @@ export type _Mul<
   Res extends unknown[] = [],
 > = B extends 0
   ? Res['length'] & number
-  : _Mul<A, _Sub<B, 1>, [...Res, ..._BuildArr<A>]>
+  : _Mul<A, _Sub<B, 1>, [...Res, ..._BuildArr<A>]>;
 
 export type _Div<
   A extends number,
@@ -37,4 +37,11 @@ export type _Div<
   Res extends unknown[] = [],
 > = A extends 0
   ? Res['length'] & number
-  : _Div<_Sub<A, B>, B, [...Res, unknown]>
+  : _Div<_Sub<A, B>, B, [...Res, unknown]>;
+
+export type _Mod<A extends number, B extends number> = _BuildArr<A> extends [
+  ..._BuildArr<B>,
+  ...infer Rest,
+]
+  ? _Mod<Rest['length'], B>
+  : A;

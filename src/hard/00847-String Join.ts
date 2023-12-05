@@ -1,16 +1,16 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 // Edge cases
-const noCharsOutput = join('-')()
-const oneCharOutput = join('-')('a')
-const noDelimiterOutput = join('')('a', 'b', 'c')
+const noCharsOutput = join('-')();
+const oneCharOutput = join('-')('a');
+const noDelimiterOutput = join('')('a', 'b', 'c');
 
 // Regular cases
-const hyphenOutput = join('-')('a', 'b', 'c')
-const hashOutput = join('#')('a', 'b', 'c')
-const twoCharOutput = join('-')('a', 'b')
-const longOutput = join('-')('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
+const hyphenOutput = join('-')('a', 'b', 'c');
+const hashOutput = join('#')('a', 'b', 'c');
+const twoCharOutput = join('-')('a', 'b');
+const longOutput = join('-')('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
 
 type cases = [
   Expect<Equal<typeof noCharsOutput, ''>>,
@@ -20,23 +20,21 @@ type cases = [
   Expect<Equal<typeof hyphenOutput, 'a-b-c'>>,
   Expect<Equal<typeof hashOutput, 'a#b#c'>>,
   Expect<Equal<typeof longOutput, 'a-b-c-d-e-f-g-h'>>,
-]
+];
 
 // ============= Your Code Here =============
 
 type StringJoin<Ch extends string, S extends string[]> = S extends [
   infer First,
-  ...infer Rest,
+  ...infer Rest extends string[],
 ]
   ? Rest extends []
     ? First
-    : Rest extends string[]
-    ? `${First & string}${Ch}${StringJoin<Ch, Rest> & string}`
-    : never
-  : ''
+    : `${First & string}${Ch}${StringJoin<Ch, Rest> & string}`
+  : '';
 
 declare function join<Delimiter extends string>(
   delimiter: Delimiter
-): <Parts extends string[]>(...parts: Parts) => StringJoin<Delimiter, Parts>
+): <Parts extends string[]>(...parts: Parts) => StringJoin<Delimiter, Parts>;
 
-type T = typeof oneCharOutput
+type T = typeof oneCharOutput;

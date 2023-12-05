@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<IsNegativeNumber<0>, false>>,
@@ -11,7 +11,7 @@ type cases = [
   Expect<Equal<IsNegativeNumber<1>, false>>,
   Expect<Equal<IsNegativeNumber<1.9>, false>>,
   Expect<Equal<IsNegativeNumber<100_000_000>, false>>,
-]
+];
 // true if N is negative
 // false if N is positive
 // false if N is 0,
@@ -19,12 +19,12 @@ type cases = [
 // never if N is a union
 // ============= Your Code Here =============
 
-type IsUnion<T, U = T> = T extends T ? ([U] extends [T] ? false : true) : never
+type IsUnion<T, U = T> = T extends T ? ([U] extends [T] ? false : true) : never;
 
 type IsNegativeNumber<T extends number> = IsUnion<T> extends true
   ? never
   : number extends T
   ? never
-  : `${T}` extends `-${infer Rest}`
+  : `${T}` extends `-${string}`
   ? true
-  : false
+  : false;

@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect, ExpectExtends } from '../test-utils'
+import type { Equal, Expect, ExpectExtends } from '../test-utils';
 
 const ref = {
   count: 1,
@@ -13,15 +13,15 @@ const ref = {
       },
     ],
   },
-}
+};
 
 type cases = [
   Expect<Equal<ObjectKeyPaths<{ name: string; age: number }>, 'name' | 'age'>>,
   Expect<
     Equal<
       ObjectKeyPaths<{
-        refCount: number
-        person: { name: string; age: number }
+        refCount: number;
+        person: { name: string; age: number };
       }>,
       'refCount' | 'person' | 'person.name' | 'person.age'
     >
@@ -53,16 +53,15 @@ type cases = [
       false
     >
   >,
-]
+];
 
 // ============= Your Code Here =============
-
 type GenerateNode<
   T extends string | number,
   IsRoot extends boolean,
 > = IsRoot extends true
   ? `${T}`
-  : `.${T}` | (T extends number ? `[${T}]` | `.[${T}]` : never)
+  : `.${T}` | (T extends number ? `[${T}]` | `.[${T}]` : never);
 
 type ObjectKeyPaths<
   T extends Record<string, any>,
@@ -74,10 +73,4 @@ type ObjectKeyPaths<
       | (T[K] extends Record<string, any>
           ? `${GenerateNode<K, IsRoot>}${ObjectKeyPaths<T[K], false>}`
           : never)
-  : never
-
-type T = ObjectKeyPaths<{
-  person: {
-    books: ['book1', 'book2']
-  }
-}>
+  : never;

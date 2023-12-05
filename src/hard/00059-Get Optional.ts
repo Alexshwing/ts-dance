@@ -9,10 +9,6 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-type MyPick<T extends Record<string, any>, K extends keyof T> = {
-  [Key in keyof T as Key extends K ? Key : never]: T[Key]
-}
-
 type GetOptional<T extends Record<string, any>> = {
-  [Key in keyof T as {} extends MyPick<T, Key> ? Key : never]: T[Key]
+  [P in keyof T as {} extends Pick<T, P> ? P : never]: T[P]
 }

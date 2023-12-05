@@ -1,20 +1,20 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 interface Model {
-  name: string
-  age: number
-  locations: string[] | null
+  name: string;
+  age: number;
+  locations: string[] | null;
 }
 
 type ModelEntries =
   | ['name', string]
   | ['age', number]
-  | ['locations', string[] | null]
+  | ['locations', string[] | null];
 
-type cases = [Expect<Equal<ObjectFromEntries<ModelEntries>, Model>>]
+type cases = [Expect<Equal<ObjectFromEntries<ModelEntries>, Model>>];
 
 // ============= Your Code Here =============
 type ObjectFromEntries<T extends any[]> = {
-  [Key in T as Key extends any[] ? Key[0] : never]: Key[1]
-}
+  [P in T as P extends any[] ? P[0] : never]: P[1];
+};

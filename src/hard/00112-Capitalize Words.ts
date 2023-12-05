@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<CapitalizeWords<'foobar'>, 'Foobar'>>,
@@ -14,14 +14,14 @@ type cases = [
     >
   >,
   Expect<Equal<CapitalizeWords<''>, ''>>,
-]
+];
 
 // 实现CapitalizeWords<T>，它将字符串的每个单词的第一个字母转换为大写，其余部分保持原样。
 // ============= Your Code Here =============
 
 type IsAlpha<Ch extends string> = Uppercase<Ch> extends Lowercase<Ch>
   ? false
-  : true
+  : true;
 
 type CapitalizeWords<
   T extends string,
@@ -30,6 +30,4 @@ type CapitalizeWords<
   ? IsAlpha<First> extends true
     ? CapitalizeWords<Rest, `${Res}${First}`>
     : `${Capitalize<`${Res}${First}`>}${CapitalizeWords<Rest>}`
-  : Capitalize<Res>
-
-type T = CapitalizeWords<'foobar'>
+  : Capitalize<Res>;

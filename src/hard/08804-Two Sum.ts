@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<TwoSum<[3, 3], 6>, true>>,
@@ -14,23 +14,21 @@ type cases = [
   Expect<Equal<TwoSum<[1, 2, 3], 5>, true>>,
   Expect<Equal<TwoSum<[1, 2, 3], 6>, false>>,
   Expect<Equal<TwoSum<[3, 2, 0], 2>, true>>,
-]
+  Expect<Equal<TwoSum<[3, 2, 0], 4>, false>>,
+];
 
 // ============= Your Code Here =============
-type LengthArr<
-  T extends number,
-  Res extends unknown[] = [],
-> = Res['length'] extends T ? Res : LengthArr<T, [...Res, unknown]>
+import { _BuildArr } from 'utils/operation';
 
 type TwoSum<T extends number[], U extends number> = T extends [
   infer First extends number,
   ...infer Rest extends number[],
 ]
-  ? LengthArr<U> extends [...LengthArr<First>, ...infer R]
+  ? _BuildArr<U> extends [..._BuildArr<First>, ...infer R]
     ? R['length'] extends Rest[number]
       ? true
       : TwoSum<Rest, U>
     : 0 extends Rest[number]
     ? true
     : false
-  : false
+  : false;

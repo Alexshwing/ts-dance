@@ -10,5 +10,5 @@ type cases = [
 
 // ============= Your Code Here =============
 type GetRequired<T extends Record<string, any>> = {
-  [Key in keyof T as {} extends Pick<T, Key> ? never : Key]: T[Key]
+  [P in keyof T as {} extends Pick<T, P> ? never : P]: T[P]
 }

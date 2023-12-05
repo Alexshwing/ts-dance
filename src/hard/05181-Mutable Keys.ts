@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<MutableKeys<{ a: number; readonly b: string }>, 'a'>>,
@@ -11,11 +11,11 @@ type cases = [
     >
   >,
   Expect<Equal<MutableKeys<{}>, never>>,
-]
+];
 
 // ============= Your Code Here =============
 type MutableKeys<T extends Record<string, any>> = keyof {
-  [Key in keyof T as Equal<Pick<T, Key>, Readonly<Pick<T, Key>>> extends true
+  [P in keyof T as Equal<Pick<T, P>, Readonly<Pick<T, P>>> extends true
     ? never
-    : Key]: T[Key]
-}
+    : P]: T[P];
+};

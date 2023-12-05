@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<SnakeCase<'hello'>, 'hello'>>,
@@ -11,11 +11,11 @@ type cases = [
       'get_element_by_id' | 'get_element_by_class_names'
     >
   >,
-]
+];
 
 // ============= Your Code Here =============
 type SnakeCase<T extends string> = T extends `${infer First}${infer Rest}`
-  ? First extends Uppercase<First>
-    ? `_${Lowercase<First>}${SnakeCase<Rest>}`
-    : `${First}${SnakeCase<Rest>}`
-  : T
+  ? `${First extends Uppercase<First>
+      ? '_'
+      : ''}${Lowercase<First>}${SnakeCase<Rest>}`
+  : T;

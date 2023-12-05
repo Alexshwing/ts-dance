@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<GreaterThan<1, 0>, true>>,
@@ -11,13 +11,13 @@ type cases = [
   Expect<Equal<GreaterThan<10, 100>, false>>,
   Expect<Equal<GreaterThan<111, 11>, true>>,
   Expect<Equal<GreaterThan<1234567891011, 1234567891010>, true>>,
-]
+];
 
 // ============= Your Code Here =============
-import { _Compare, Comparison } from '../extreme/00274-Integers Comparator'
-type GreaterThan<A extends number, B extends number> = _Compare<
+import { _Compare, Comparison } from '../extreme/00274-Integers Comparator';
+export type GreaterThan<A extends number, B extends number> = _Compare<
   A,
   B
 > extends Comparison.Greater
   ? true
-  : false
+  : false;

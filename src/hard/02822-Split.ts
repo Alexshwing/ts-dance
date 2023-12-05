@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<Split<'Hi! How are you?', 'z'>, ['Hi! How are you?']>>,
@@ -30,7 +30,7 @@ type cases = [
   Expect<Equal<Split<'', ''>, []>>,
   Expect<Equal<Split<'', 'z'>, ['']>>,
   Expect<Equal<Split<string, 'whatever'>, string[]>>,
-]
+];
 
 // ============= Your Code Here =============
 type Split<S extends string, SEP extends string> = string extends S
@@ -39,6 +39,4 @@ type Split<S extends string, SEP extends string> = string extends S
   ? [L, ...Split<R, SEP>]
   : SEP extends ''
   ? []
-  : [S]
-
-type T = Split<'', 'z'>
+  : [S];
