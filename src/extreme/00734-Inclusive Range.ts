@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<InclusiveRange<200, 1>, []>>,
@@ -345,11 +345,11 @@ type cases = [
       ]
     >
   >,
-]
+];
 
 // ============= Your Code Here =============
-import { _Add, _Sub } from 'utils/operation'
-import { _Compare, Comparison } from './00274-Integers Comparator'
+import { _Add } from 'utils/operation';
+import { _Compare, Comparison } from './00274-Integers Comparator';
 
 type InclusiveRange<
   Lower extends number,
@@ -357,4 +357,4 @@ type InclusiveRange<
   Res extends number[] = [],
 > = _Compare<Lower, Higher> extends Comparison.Greater
   ? Res
-  : InclusiveRange<_Add<Lower, 1>, Higher, [...Res, Lower]>
+  : InclusiveRange<_Add<Lower, 1>, Higher, [...Res, Lower]>;

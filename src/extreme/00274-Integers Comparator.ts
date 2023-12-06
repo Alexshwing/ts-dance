@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<Comparator<5, 5>, Comparison.Equal>>,
@@ -46,10 +46,10 @@ type cases = [
   Expect<
     Equal<Comparator<-9007199254740991, -9007199254740992>, Comparison.Greater>
   >,
-]
+];
 
 // ============= Your Code Here =============
-import { _NumberToString, _StringToArr } from 'utils/transformation'
+import { _NumberToString, _StringToArr } from 'utils/transformation';
 
 export enum Comparison {
   Greater,
@@ -62,7 +62,7 @@ type StringLength<
   Res extends unknown[] = [],
 > = T extends `${infer _}${infer Rest}`
   ? StringLength<Rest, [...Res, unknown]>
-  : Res['length']
+  : Res['length'];
 
 // 答案反转
 type ReverseResult<T, IsReverse extends boolean> = IsReverse extends false
@@ -71,20 +71,20 @@ type ReverseResult<T, IsReverse extends boolean> = IsReverse extends false
   ? Comparison.Lower
   : T extends Comparison.Lower
   ? Comparison.Greater
-  : T
+  : T;
 
 // 判断是否为正数
-type IsPositiveNumber<T extends number> = `${T}` extends `-${infer _}`
+type IsPositiveNumber<T extends number> = `${T}` extends `-${string}`
   ? false
-  : true
+  : true;
 
-// 单位数字比大小
+// 个位数字比大小
 type CompareSingleDigit<
   A extends string,
   B extends string,
-> = '0123456789' extends `${string}${A}${string}${B}${string}` ? true : false
+> = '0123456789' extends `${string}${A}${string}${B}${string}` ? true : false;
 
-// 数位比较(长度相同)
+// 数位比较
 type CompareDigit<A extends string[], B extends string[]> = A extends [
   infer FA extends string,
   ...infer RA extends string[],
@@ -98,7 +98,7 @@ type CompareDigit<A extends string[], B extends string[]> = A extends [
     : Comparison.Greater
   : B extends []
   ? Comparison.Equal
-  : Comparison.Lower
+  : Comparison.Lower;
 
 // 正负号比较
 type CompareSign<
@@ -110,18 +110,13 @@ type CompareSign<
     : Comparison.Greater
   : IsPositiveNumber<B> extends true
   ? Comparison.Lower
-  : Comparison.Equal
+  : Comparison.Equal;
 
 // 长度比较
-type CompareLength<
-  A extends number,
-  B extends number,
-  STR_A extends string = `${A}`,
-  STR_B extends string = `${B}`,
-> = CompareDigit<
-  _StringToArr<_NumberToString<StringLength<STR_A>>>,
-  _StringToArr<_NumberToString<StringLength<STR_B>>>
->
+type CompareLength<A extends number, B extends number> = CompareDigit<
+  _StringToArr<_NumberToString<StringLength<`${A}`>>>,
+  _StringToArr<_NumberToString<StringLength<`${B}`>>>
+>;
 
 type Comparator<A extends number, B extends number> = CompareSign<
   A,
@@ -140,6 +135,6 @@ type Comparator<A extends number, B extends number> = CompareSign<
         : ReverseResult<R2, IsPositiveNumber<A> extends false ? true : false>
       : never
     : R1
-  : never
+  : never;
 
-export type _Compare<A extends number, B extends number> = Comparator<A, B>
+export type _Compare<A extends number, B extends number> = Comparator<A, B>;
