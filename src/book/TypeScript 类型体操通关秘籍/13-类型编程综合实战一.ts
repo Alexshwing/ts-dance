@@ -63,3 +63,5 @@ type T7 = PartialObjectPropByKeys<
   },
   'a'
 >;
+
+export {};
