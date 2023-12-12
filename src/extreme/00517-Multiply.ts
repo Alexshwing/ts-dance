@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from '../test-utils';
 
 type cases = [
   Expect<Equal<Multiply<2, 3>, '6'>>,
@@ -18,19 +18,19 @@ type cases = [
   Expect<Equal<Multiply<728, 0>, '0'>>,
   Expect<Equal<Multiply<'0', 213>, '0'>>,
   Expect<Equal<Multiply<0, '0'>, '0'>>,
-]
+];
 
 // ============= Your Code Here =============
 import {
   _ReverseArr,
   _StringToNumberArr,
   _NumberArrToStr,
-} from 'utils/transformation'
-import { _Add, _Sub, _Mul, _Div, _BuildArr } from 'utils/operation'
-import { _Digit_Str } from 'utils/type'
-import { _StringToNumber } from 'utils/transformation'
+} from 'utils/transformation';
+import { _Add, _Sub, _Mul, _Div, _BuildArr } from 'utils/operation';
+import { _Digit_Str } from 'utils/type';
+import { _StringToNumber } from 'utils/transformation';
 
-type ToNumber<T> = T extends number ? T : never
+type ToNumber<T> = T extends number ? T : never;
 
 type AddToIndex<
   T extends number[],
@@ -41,7 +41,7 @@ type AddToIndex<
   ? Count['length'] extends Index
     ? [_Add<First, R>, ...AddToIndex<Rest, Index, R, [...Count, unknown]>]
     : [First, ...AddToIndex<Rest, Index, R, [...Count, unknown]>]
-  : []
+  : [];
 
 // 1 * [1, 2, 3] = [1, 2, 6]
 type ScalarArrayMul<
@@ -62,7 +62,7 @@ type ScalarArrayMul<
       >,
       [...IndexInB, unknown]
     >
-  : Res
+  : Res;
 
 // [1, 2, 3] * [1, 2, 3]
 type ArrMul<
@@ -77,16 +77,16 @@ type ArrMul<
       ScalarArrayMul<First, ToNumber<IndexInA['length']>, B, Res>,
       [...IndexInA, unknown]
     >
-  : Res
+  : Res;
 
-type T = ArrMul<[1, 2, 3], [1, 2, 3], [0, 0, 0, 0, 0, 0]> // [1, 4, 10, 12, 9, 0]
+type T = ArrMul<[1, 2, 3], [1, 2, 3], [0, 0, 0, 0, 0, 0]>; // [1, 4, 10, 12, 9, 0]
 
 type StrLen<
   T extends string,
   Res extends unknown[] = [],
 > = T extends `${infer _}${infer Rest}`
   ? StrLen<Rest, [...Res, unknown]>
-  : Res['length']
+  : Res['length'];
 
 // 去除前导零
 type TrimLeadingZeros<T extends number[]> = T extends [
@@ -96,7 +96,7 @@ type TrimLeadingZeros<T extends number[]> = T extends [
   ? First extends 0
     ? TrimLeadingZeros<Rest>
     : T
-  : T
+  : T;
 
 // `123` -> [12, 2]
 // `1` -> [1]
@@ -106,7 +106,7 @@ type Split<T extends string> = T extends `${_Digit_Str}`
   ? T extends `${L}${infer R}`
     ? [_StringToNumber<L>, _StringToNumber<R>]
     : never
-  : never
+  : never;
 
 // 处理进位
 type HandleCarry<
@@ -123,7 +123,7 @@ type HandleCarry<
         : never
       : never
     : never
-  : Res
+  : Res;
 
 // 思路:
 // 1. 反转
@@ -144,12 +144,12 @@ type BigNumberMul<A extends string, B extends string> = _NumberArrToStr<
       >
     >
   >
->
-type Multiply<
+>;
+export type Multiply<
   A extends string | number | bigint,
   B extends string | number | bigint,
 > = BigNumberMul<`${A}`, `${B}`> extends infer R
   ? R extends ''
     ? '0'
     : R
-  : never
+  : never;
