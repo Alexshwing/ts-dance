@@ -12,6 +12,7 @@
     "stripInternal": true,
     "pretty": true,
     "declaration": true,
+    "strictFunctionTypes": true,
     "outDir": "lib",
     "baseUrl": "./",
     "paths": {

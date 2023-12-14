@@ -53,19 +53,21 @@ type cases = [
   Expect<Equal<OptionalUndefined<{ value?: string }>, { value?: string }>>,
 ];
 
-// 它将T的所有可以未定义的属性转换为可选属性。此外，还可以传递第二个可选的泛型Props来限制可以更改的属性。
 // ============= Your Code Here =============
 
 type OptionalUndefined<
-  T extends Record<string, any>,
-  Props extends keyof T,
+  T,
+  Props extends keyof T = keyof T,
+  OptionsProps extends keyof T = Props extends keyof T
+    ? undefined extends T[Props]
+      ? Props
+      : never
+    : never,
 > = Omit<
-  Omit<T, Props> & {
-    [K in Props as undefined extends T[K] ? K : never]?: T[K];
+  {
+    [K in OptionsProps]?: T[K];
   } & {
-    [K in Props as undefined extends T[K] ? never : K]: T[K];
+    [K in Exclude<keyof T, OptionsProps>]: T[K];
   },
   never
 >;
-
-type T = OptionalUndefined<{ value: string; desc: string }, 'value'>;
