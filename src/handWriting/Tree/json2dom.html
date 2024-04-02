@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function json2dom(obj) {
+      if (typeof obj === 'number') {
+        obj = String(obj)
+      }
+      if (typeof obj === 'string') {
+        return document.createTextNode(obj)
+      }
+      const ans = document.createElement(obj.tag)
+      if (obj.attrs) {
+        const keys = Object.keys(obj.attrs)
+        keys.forEach(key => {
+          const value = obj.attrs[key]
+          ans.setAttribute(key, value)
+        })
+      }
+      obj.children.forEach(child => {
+        ans.appendChild(json2dom(child))
+      })
+      return ans
+    }
+
+    document.body.appendChild(json2dom({
+      tag: "DIV",
+      attrs: {
+        id: "app",
+      },
+      children: [
+        {
+          tag: "DIV",
+          attrs: {
+            class: "title",
+          },
+          children: [{ tag: "SPAN", children: ["alexshwing"] }],
+        },
+      ],
+    }))
+  </script>
+</body>
+
+</html>

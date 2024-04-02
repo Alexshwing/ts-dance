@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="fa">
+    <div class="ch-1">ch-1</div>
+    <div class="ch-2">
+      <div class="ch-2-1">ch-2-1</div>
+      <div class="ch-2-2">ch-2-2</div>
+    </div>
+  </div>
+
+  <script>
+    function dom2json(dom) {
+      const ans = {
+        name: dom.tagName.toLowerCase(),
+        class: dom.className,
+        children: Array.from(dom.children)
+      }
+      if (ans.children) {
+        ans.children.forEach((child, i) => {
+          ans.children[i] = dom2json(child)
+        })
+      }
+      return ans
+    }
+    console.log(dom2json(document.querySelector('.fa')))
+  </script>
+</body>
+
+</html>
