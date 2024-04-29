@@ -8,15 +8,16 @@
 - ✅ [Array.prototype.findIndex](./Array/findIndex.ts)
 - ✅ [Array.prototype.includes](./Array/includes.ts)
 - ✅ [Array.prototype.flat()](./Array/flat.ts)
-- ✅ [[Array.prototype.fill](./Array/fill.ts)
+- ✅ [Array.prototype.fill](./Array/fill.ts)
 - ✅ [数组去重](./Array/union.ts)
 
 #### 对象
+- ✅ [创建对象](./Object/createObj.ts)
+- ☑️ [继承](./Object/inherit.ts)
 - ☑️ [Object.create()]()
 - ☑️ [new]()
 - ☑️ [instanceof]()
 - ☑️ [类型推断]()
-- ☑️ [继承]()
 
 #### 函数
 - ☑️ [Function.prototype.call()]()
