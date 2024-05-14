@@ -13,16 +13,16 @@
 
 #### 对象
 - ✅ [创建对象](./Object/createObj.ts)
-- ☑️ [继承](./Object/inherit.ts)
+- ✅ [继承](./Object/inherit.ts)
 - ☑️ [Object.create()]()
-- ☑️ [new]()
+- ✅ [new](./Object/new.ts)
 - ☑️ [instanceof]()
 - ☑️ [类型推断]()
 
 #### 函数
-- ☑️ [Function.prototype.call()]()
-- ☑️ [Function.prototype.apply()]()
-- ☑️ [Function.prototype.bind()]()
+- ✅ [Function.prototype.call()](./Function/invoke.ts)
+- ✅ [Function.prototype.apply()](./Function/invoke.ts)
+- ✅ [Function.prototype.bind()](./Function/invoke.ts)
 
 #### 树
 - ✅ [DOM2JSON](./Tree/dom2json.html)
