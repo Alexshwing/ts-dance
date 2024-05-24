@@ -7,7 +7,7 @@
 // 请问 A或者B是否有必赢策略? 如果有请返回能必赢的玩家名。没有则返回null。
 
 function canWinStonePicking(n: number): 'A' | 'B' | null {
-  // your code here
+  return n % 3 == 1 ? 'B' : 'A';
 }
 
 console.log(canWinStonePicking(1)); // 'B'
