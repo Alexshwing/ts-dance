@@ -5,10 +5,11 @@ function nextRightSibling(root, target) {
     const n = dq.length;
     for (let i = 0; i < n; i += 1) {
       let p = dq[i];
+      if (p === target) {
+        return dq[i + 1] || null;
+      }
+
       for (const ch of p.children) {
-        if (tmp.length > 0 && tmp[tmp.length - 1] === target) {
-          return ch;
-        }
         tmp.push(ch);
       }
     }
