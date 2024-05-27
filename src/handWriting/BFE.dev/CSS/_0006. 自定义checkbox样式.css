@@ -1,0 +1,10 @@
+/* 
+checkbox的默认样式大多数时候都不是我们想要的，这个问题中请实现不同的样式。
+未选择时显示灰色原点('color: gray')
+已选择时显示绿色圆点('color: green')
+原点半径5px，请不要添加额外的padding等空白。
+
+<label class="my-checkbox">
+  <input type="checkbox" />
+  <span>a checkbox</span>
+</label> */

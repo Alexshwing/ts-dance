@@ -1,0 +1,18 @@
+
+/* 请实现简单的两栏布局。左栏最少100px，占据整体25%的宽度，剩余的用在右栏。 */
+
+.container {
+  height: 300px;
+  display: flex;
+}
+
+.left {
+  background-color: #f44336;
+  min-width: 100px;
+  flex: 1;
+}
+
+.right {
+  background-color: #2973af;
+  flex: 3;
+}

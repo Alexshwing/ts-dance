@@ -1,0 +1,4 @@
+input[type="range"] {
+  /* accent-color 为某些元素所生成的用户界面控件设置了强调色 */
+  accent-color: #F44336;
+}

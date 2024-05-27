@@ -1,0 +1,8 @@
+.one-line {
+  /* 溢出隐藏 */
+  overflow: hidden;
+  /* 溢出省略号 */
+  text-overflow: ellipsis; 
+  /* 不换行 */
+  white-space: nowrap;
+}
