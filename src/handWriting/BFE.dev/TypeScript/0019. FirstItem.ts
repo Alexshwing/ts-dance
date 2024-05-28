@@ -1,0 +1,3 @@
+type FirstItem<T extends any[]> = T extends [infer First, ...infer Rest]
+  ? First
+  : never;
