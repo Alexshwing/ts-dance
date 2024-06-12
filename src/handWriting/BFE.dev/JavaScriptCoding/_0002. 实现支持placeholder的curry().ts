@@ -1,13 +1,27 @@
-// This is a JavaScript coding problem from BFE.dev
-
 interface Curry {
   (fn: (...args: any[]) => any): (...args: any[]) => any;
   placeholder: Symbol;
 }
 
-const curry: Curry = (fn) => {
-  // your code here
-};
+/*
+function curry(func) {
+  return function curried(...args) {
+    const complete =
+      args.length >= func.length &&
+      !args.slice(0, func.length).includes(curry.placeholder);
+    if (complete) return func.apply(this, args);
+    return function (...newArgs) {
+      // replace placeholders in args with values from newArgs
+      const res = args.map((arg) =>
+        arg === curry.placeholder && newArgs.length ? newArgs.shift() : arg
+      );
+      return curried(...res, ...newArgs);
+    };
+  };
+}
+*/
+
+const curry: Curry = (fn) => {};
 
 curry.placeholder = Symbol();
 

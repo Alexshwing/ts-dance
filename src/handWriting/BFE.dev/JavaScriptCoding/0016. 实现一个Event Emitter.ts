@@ -22,7 +22,33 @@
 // callback1 也不会被调用
 
 class EventEmitter {
-  subscribe(eventName, callback) {}
+  mp = new Map();
 
-  emit(eventName, ...args) {}
+  subscribe(name, cb) {
+    if (!this.mp.has(name)) {
+      this.mp.set(name, new Set());
+    }
+    const cbs = this.mp.get(name);
+    const cbObj = { cb };
+    cbs.add(cbObj);
+
+    return {
+      release: () => {
+        cbs.delete(cbObj);
+        if (cbs.size === 0) {
+          this.mp.delete(name);
+        }
+      },
+    };
+  }
+
+  emit(name, ...args) {
+    if (!this.mp.get(name)) {
+      return;
+    }
+    const cbs = this.mp.get(name);
+    cbs.forEach((cbObj) => {
+      cbObj.cb.apply(this, args);
+    });
+  }
 }

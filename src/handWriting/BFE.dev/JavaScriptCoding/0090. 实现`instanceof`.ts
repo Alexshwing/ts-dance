@@ -1,10 +1,9 @@
-/**
- * @param {any} obj
- * @param {target} target
- * @return {boolean}
- */
 function myInstanceOf(obj, target) {
-  // your code here
+  if (obj == null || typeof obj != 'object') {
+    return false;
+  }
+  const proto = Object.getPrototypeOf(obj);
+  return proto === target.prototype ? true : myInstanceOf(proto, target);
 }
 
 class A {}

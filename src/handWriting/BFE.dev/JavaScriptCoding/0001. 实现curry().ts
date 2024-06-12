@@ -1,13 +1,10 @@
-// This is a JavaScript coding problem from BFE.dev
 type Curry = (fn: (...args: any[]) => any) => (...args: any[]) => any;
 
 const curry: Curry = (fn) => {
-  return function curryInner(...args: any[]) {
-    if (args.length >= fn.length) {
-      return fn(...args);
-    } else {
-      return (...args2: any[]) => curryInner(...args, ...args2);
-    }
+  return function curryFn(...args: any[]) {
+    return args.length >= fn.length
+      ? fn(...args)
+      : (...args2: any[]) => curryFn(...args, ...args2);
   };
 };
 
