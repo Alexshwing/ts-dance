@@ -34,13 +34,12 @@
 // arr // [2,3,6]
 // originalArr // [2,3,6]
 
+/**
+ * @param {any[]} arr
+ * @returns {?} - sorry no type hint for this
+ */
 function wrap(arr) {
-  return new Proxy(arr, {
-    get(this: any, val) {
-      console.log(arr, '--', arr.length + val);
-      return val > 0 ? arr[val] : arr[arr.length + val];
-    },
-  });
+  // your code here
 }
 
 const originalArr = [1, 2, 3];

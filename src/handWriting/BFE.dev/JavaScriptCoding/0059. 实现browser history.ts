@@ -27,26 +27,41 @@
 //         ↑
 // 请你实现一个BrowserHistory来模拟上述逻辑。
 
+// @ts-nocheck
 class BrowserHistory {
   /**
    * @param {string} url
    * if url is set, it means new tab with url
    * otherwise, it is empty new tab
    */
-  constructor(url) {}
+  constructor(url) {
+    this.A = url ? [url] : [];
+    this.index = 0;
+  }
   /**
    * @param { string } url
    */
-  visit(url) {}
+  visit(url) {
+    this.A[++this.index] = url;
+  }
 
   /**
    * @return {string} current url
    */
-  get current() {}
+  get current() {
+    return this.A[this.index];
+  }
 
   // go to previous entry
-  goBack() {}
+  goBack() {
+    this.index = Math.max(0, this.index - 1);
+    return this.A[this.index];
+  }
 
   // go to next visited url
-  forward() {}
+  forward() {
+    if (this.index + 1 < this.A.length) {
+      return this.A[++this.index];
+    }
+  }
 }
